@@ -10,6 +10,7 @@ from result_vis_i import city_I
 from result_vis_j import city_J
 from result_vis_k import city_K
 
+# dir需要和result中存储submission.csv文件的目录一样
 dir = 'date7-2_epoch=2000_method=all_rmsle=1.59074'
 
 city_A(dir)
