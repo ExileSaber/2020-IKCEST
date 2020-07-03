@@ -7,7 +7,7 @@ import pandas as pd  # 数据处理常用库
 import csv
 
 
-def city_C(epoch, method='all people'):
+def city_C(epoch, seq=10, method='all people'):
 
     class LSTM(nn.Module):
         def __init__(self):
