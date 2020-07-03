@@ -1,0 +1,1 @@
+train_data_all目录下存放官网下载的数据集中所有城市的训练数据和submission.csv文件
