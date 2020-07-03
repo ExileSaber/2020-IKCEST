@@ -6,26 +6,20 @@ import matplotlib.pyplot as plt
 import pandas as pd  # 数据处理常用库
 import csv
 
-seq = 10
 
+def city_A(epoch, seq=10, method='all people'):
 
-class LSTM(nn.Module):
-    def __init__(self):
-        super(LSTM, self).__init__()
-        self.lstm = nn.LSTM(input_size=1, hidden_size=16, num_layers=1, batch_first=True)
-        self.linear = nn.Linear(16 * seq, 1)
+    class LSTM(nn.Module):
+        def __init__(self):
+            super(LSTM, self).__init__()
+            self.lstm = nn.LSTM(input_size=1, hidden_size=16, num_layers=1, batch_first=True)
+            self.linear = nn.Linear(16 * seq, 1)
 
-    def forward(self, x):
-        x, (h, c) = self.lstm(x)
-        x = x.reshape(-1, 16 * seq)
-        x = self.linear(x)
-        return x
-
-
-def city_A(epoch, method='all people'):
-    # 设置模型
-    # 学习率
-    learning_rate = 0.01  # 类似于每次梯度下降移动步长
+        def forward(self, z):
+            z, (h, c) = self.lstm(z)
+            z = z.reshape(-1, 16 * seq)
+            z = self.linear(z)
+            return z
 
     data_dir = 'D:/python/venv/2020year/2020 IKCEST/train_data_all'
     files = ['city_A', 'city_B', 'city_C', 'city_D', 'city_E', 'city_F', 'city_G',
@@ -129,6 +123,7 @@ def city_A(epoch, method='all people'):
             prediction = list((model(train_x).data.reshape(-1)) * 1000)
             # print(len(prediction))
 
+            # print(pred_y[1:])
             # plt.figure(1)
             # plt.plot(y, label='True Value')
             # plt.plot(prediction, label='LSTM fit')
@@ -161,4 +156,5 @@ def city_A(epoch, method='all people'):
                 csv_writer = csv.writer(f)
                 csv_writer.writerow(line)
             print("城市{}，第{}个区域训练结束，训练预测的数据条数{}-------".format(city, id, number))
+
 
